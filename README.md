@@ -16,14 +16,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - [Demo](#-demo)
 - [Tech Stack](#️-tech-stack)
 - [Architecture](#️-architecture)
-- [Getting Started](#-getting-started)
-- [Environment Variables](#️-environment-variables)
-- [Deployment](#️-deployment)
 - [API Endpoints](#-api-endpoints)
-- [Project Structure](#-project-structure)
-- [Screenshots](#️-screenshots)
-- [Contributing](#-contributing)
-- [License](#-license)
 
 ---
 
@@ -87,3 +80,65 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 ### External APIs
 - Google Maps JavaScript API – Interactive maps  
 - Google Geocoding API – Airport location coordinates  
+
+
+##  Architecture
+┌─────────────┐
+│   Client    │  (Browser)
+└──────┬──────┘
+       │  HTTPS
+       ↓
+┌─────────────┐
+│   Vercel    │  (Frontend - React)
+│  Frontend   │  https://travel-hub-indol.vercel.app
+└──────┬──────┘
+       │  REST API
+       ↓
+┌─────────────┐
+│   Render    │  (Backend - Node.js / Express)
+│   Backend   │  https://travel-hub-backend.onrender.com
+└──────┬──────┘
+       │  Mongoose (ODM)
+       ↓
+┌─────────────┐
+│   MongoDB   │  (Database)
+│    Atlas    │  (Cloud NoSQL Database)
+└─────────────┘
+
+## 📡 API Endpoints
+
+###  Airlines
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| GET | `/api/get-all-airlines` | Get all airlines |
+| GET | `/api/get-all-airlines?airlineId=ID` | Get specific airline by ID |
+| POST | `/api/create-airline` | Create new airline |
+| PUT | `/api/update-airline` | Update airline |
+| PUT | `/api/delete-airline/:id` | Soft delete airline |
+
+###  Airports
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| GET | `/api/get-airports` | Get all airports |
+| GET | `/api/get-airports?countryId=ID` | Filter airports by country |
+| POST | `/api/create-airport` | Create new airport |
+| PUT | `/api/update-airport/:id` | Update airport |
+| PUT | `/api/delete-airport/:id` | Soft delete airport |
+
+### 🛤️ Routes
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| GET | `/api/get-all-routes` | Get all routes |
+| GET | `/api/get-all-routes?airlineId=ID` | Filter routes by airline |
+| GET | `/api/get-all-routes?includeDeleted=true` | Include deleted routes |
+| POST | `/api/create-route` | Create new route |
+| PUT | `/api/update-route` | Update route |
+| PUT | `/api/delete-route/:id` | Soft delete route |
+
+### 📊 Dashboard
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| GET | `/api/get-all-lengths` | Get entity counts |
+| GET | `/api/get-maps-config` | Get Maps API config |
+| GET | `/api/get-all-countries-airports` | Get countries & airports |
+
