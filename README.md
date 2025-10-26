@@ -14,6 +14,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 ##  Table of Contents
 - [Features](#-features)
 - [Demo](#-demo)
+- [Database relationships](#️-database-relationships)
 - [Tech Stack](#️-tech-stack)
 - [Architecture](#️-architecture)
 - [API Endpoints](#-api-endpoints)
@@ -47,6 +48,9 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 ### 🔗 Live Application
 [https://travel-hub-indol.vercel.app/](https://travel-hub-indol.vercel.app/)
 
+## Database relationship
+
+![Database relationships](./public/database-relationships.png)
 
 ## Tech Stack
 
