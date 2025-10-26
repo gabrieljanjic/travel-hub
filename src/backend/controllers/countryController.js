@@ -1,5 +1,5 @@
-const Airport = require("../models/airportModel");
-const Country = require("../models/countryModel");
+const Airport = require("../models/AirportModel");
+const Country = require("../models/CountryModel");
 
 exports.getAllCountries = async (req, res) => {
   try {
