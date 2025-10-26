@@ -27,7 +27,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 
 ---
 
-##  Features
+##Features
 
 ###  Core Functionality
 - **Interactive Dashboard** – Real-time statistics and visual analytics  
