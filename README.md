@@ -105,7 +105,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 │    Atlas    │  (Cloud NoSQL Database)
 └─────────────┘
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ###  Airlines
 | Method | Endpoint | Description |
@@ -125,7 +125,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 | PUT | `/api/update-airport/:id` | Update airport |
 | PUT | `/api/delete-airport/:id` | Soft delete airport |
 
-### 🛤️ Routes
+###  Routes
 | Method | Endpoint | Description |
 |--------|---------|-------------|
 | GET | `/api/get-all-routes` | Get all routes |
@@ -135,7 +135,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 | PUT | `/api/update-route` | Update route |
 | PUT | `/api/delete-route/:id` | Soft delete route |
 
-### 📊 Dashboard
+###  Dashboard
 | Method | Endpoint | Description |
 |--------|---------|-------------|
 | GET | `/api/get-all-lengths` | Get entity counts |
