@@ -87,9 +87,7 @@ exports.createRoute = async (req, res) => {
 
 exports.updateRoute = async (req, res) => {
   try {
-    console.log("Req body:", req.body);
     const { id, airline, originAirport, destinationAirport } = req.body;
-    console.log("Updating route with data:", req.body);
     const routeExists = await Route.findOne({
       airlineId: airline,
       originAirportId: originAirport,

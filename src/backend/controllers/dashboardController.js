@@ -16,7 +16,6 @@ exports.getAllLengths = async (req, res) => {
       data: { airportCount, airlineCount, routeCount, countryCount },
     });
   } catch (error) {
-    console.error("Error in getAllLengths:", error);
     return res.status(500).json({ status: "error", message: "Server error" });
   }
 };

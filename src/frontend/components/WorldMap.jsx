@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../api";
+import swalAlert from "../../backend/utils/swal";
 
 const center = { lat: 20, lng: 0 };
 
@@ -29,7 +30,7 @@ const WorldMapContent = ({ mapsApiKey }) => {
           setAirports(data.data);
         }
       } catch (error) {
-        console.error("Error fetching airports:", error);
+        swalAlert("Error", "Failed to load airports");
       }
     };
 
@@ -98,7 +99,7 @@ const WorldMap = () => {
           setMapsApiKey(data.data.mapsApiKey);
         }
       } catch (error) {
-        console.error("Error fetching maps config:", error);
+        swalAlert("Error", "Failed to load maps configuration");
       }
     };
     getConfig();
