@@ -1,6 +1,6 @@
 const axios = require("axios");
 const mongoose = require("mongoose");
-const Airport = require("../models/airportModel");
+const Airport = require("../models/AirportModel");
 require("dotenv").config();
 
 exports.getAirports = async (req, res) => {
