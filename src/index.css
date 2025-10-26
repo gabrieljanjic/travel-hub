@@ -439,6 +439,12 @@ body {
     width: 12rem;
     font-size: 0.9rem;
   }
+  .navbar {
+    height: 52px;
+  }
+  .navbar-links {
+    top: 52px;
+  }
 }
 @media (max-width: 24rem) {
   .section-title {
@@ -453,6 +459,12 @@ body {
   .select-filter {
     width: 10rem;
     font-size: 0.8rem;
+  }
+  .navbar {
+    height: 44px;
+  }
+  .navbar-links {
+    top: 44px;
   }
 }
 @media (max-width: 20rem) {
