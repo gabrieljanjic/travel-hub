@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../api";
 import swalAlert from "../../backend/utils/swal";
+import { OrbitProgress } from "react-loading-indicators";
 
 const center = { lat: 20, lng: 0 };
 
@@ -105,7 +106,12 @@ const WorldMap = () => {
     getConfig();
   }, []);
 
-  if (!mapsApiKey) return <p>Loading configuration...</p>;
+  if (!mapsApiKey)
+    return (
+      <div className="loading-div">
+        <OrbitProgress color="#003061" size="medium" text="" textColor="" />
+      </div>
+    );
 
   return <WorldMapContent mapsApiKey={mapsApiKey} />;
 };
