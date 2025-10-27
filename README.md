@@ -17,6 +17,7 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - [Database relationships](#️-database-relationships)
 - [Tech Stack](#️-tech-stack)
 - [API Endpoints](#-api-endpoints)
+- [Authentication & Authorization](#-authentication-&-authorization)
 
 ---
 
@@ -33,6 +34,9 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - **Advanced Filtering** – Filter routes by airline or airports by country  
 
 ###  Technical Highlights
+- **User Authentication & Authorization** – Secure login, register, and protected endpoints using JWT & cookies
+- **HTTP-Only Cookies** – Tokens securely stored to prevent XSS
+- **Token Validation Middleware** – Protects sensitive routes
 - **Real-time Updates** – Instant data refresh after operations  
 - **Automatic Distance Calculation** – Uses Haversine formula for accuracy  
 - **Data Validation** – Comprehensive validation (frontend + backend)  
@@ -84,41 +88,61 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - Google Maps JavaScript API – Interactive maps  
 - Google Geocoding API – Airport location coordinates  
 
+## Authentication & Authorization
+### Overview
+The app uses JWT-based authentication with secure HTTP-only cookies.
+Users can register, log in, and stay authenticated between sessions.
+Protected API routes require a valid token for access.
+
+## Auth Flow
+1. User registers or logs in
+2. Server hashes password using bcrypt
+3. Server signs a JWT token with userId and sets it in a secure cookie
+4. Cookie is automatically sent with withCredentials: true in all API calls
+5. Middleware validates the token before granting access
+
+###  Auth Endpoints
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST | `/login` | Register or login (based on action field) |
+| GET | `/logout` | Clear JWT cookie and logout user |
+| GET | `/check-auth` | Validate current session / token |
+
 
 ##  API Endpoints
 
 ###  Airlines
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| GET | `/api/get-all-airlines` | Get all airlines |
-| GET | `/api/get-all-airlines?airlineId=ID` | Get specific airline by ID |
-| POST | `/api/create-airline` | Create new airline |
-| PUT | `/api/update-airline` | Update airline |
-| PUT | `/api/delete-airline/:id` | Soft delete airline |
+| GET | `/get-all-airlines` | Get all airlines |
+| GET | `/get-all-airlines?airlineId=ID` | Get specific airline by ID |
+| POST | `/create-airline` | Create new airline |
+| PUT | `/update-airline` | Update airline |
+| PUT | `/delete-airline/:id` | Soft delete airline |
 
 ###  Airports
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| GET | `/api/get-airports` | Get all airports |
-| GET | `/api/get-airports?countryId=ID` | Filter airports by country |
-| POST | `/api/create-airport` | Create new airport |
-| PUT | `/api/update-airport/:id` | Update airport |
-| PUT | `/api/delete-airport/:id` | Soft delete airport |
+| GET | `/get-airports` | Get all airports |
+| GET | `/get-airports?countryId=ID` | Filter airports by country |
+| POST | `/create-airport` | Create new airport |
+| PUT | `/update-airport/:id` | Update airport |
+| PUT | `/delete-airport/:id` | Soft delete airport |
 
 ###  Routes
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| GET | `/api/get-all-routes` | Get all routes |
-| GET | `/api/get-all-routes?airlineId=ID` | Filter routes by airline |
-| GET | `/api/get-all-routes?includeDeleted=true` | Include deleted routes |
-| POST | `/api/create-route` | Create new route |
-| PUT | `/api/update-route` | Update route |
-| PUT | `/api/delete-route/:id` | Soft delete route |
+| GET | `/get-all-routes` | Get all routes |
+| GET | `/get-all-routes?airlineId=ID` | Filter routes by airline |
+| GET | `/get-all-routes?includeDeleted=true` | Include deleted routes |
+| POST | `/create-route` | Create new route |
+| PUT | `/update-route` | Update route |
+| PUT | `/delete-route/:id` | Soft delete route |
 
 ###  Dashboard
 | Method | Endpoint | Description |
 |--------|---------|-------------|
-| GET | `/api/get-all-lengths` | Get entity counts |
-| GET | `/api/get-maps-config` | Get Maps API config |
-| GET | `/api/get-all-countries-airports` | Get countries & airports |
+| GET | `/get-all-lengths` | Get entity counts |
+| GET | `/get-maps-config` | Get Maps API config |
+| GET | `/get-all-countries-airports` | Get countries & airports |
 
