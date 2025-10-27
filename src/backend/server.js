@@ -1,12 +1,19 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://travel-hub-indol.vercel.app"],
+    credentials: true,
+  })
+);
 app.use(express.json());
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.DATABASE, {

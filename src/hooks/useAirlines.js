@@ -15,7 +15,11 @@ const useAirlines = (airlineFilter = "") => {
       const response = await axios.get(
         `${API_URL}/get-all-airlines${queryParams}`
       );
+
       if (response.data.status === "success") {
+        if (response.data.data.length === 0) {
+          swalAlert("Info", "There are no airlines for the selected airline.");
+        }
         setAirlines(response.data.data);
       }
     } catch (err) {
@@ -30,7 +34,10 @@ const useAirlines = (airlineFilter = "") => {
     try {
       const response = await axios.post(
         `${API_URL}/create-airline`,
-        dataToSend
+        dataToSend,
+        {
+          withCredentials: true,
+        }
       );
       if (response.data.status === "success") {
         swalAlert("Success", response.data.message);
@@ -39,7 +46,7 @@ const useAirlines = (airlineFilter = "") => {
       }
       return false;
     } catch (err) {
-      swalAlert("Error", "Failed to create airline");
+      swalAlert("Error", err.response.data.message || "Something went wrong");
 
       return false;
     } finally {
@@ -50,7 +57,13 @@ const useAirlines = (airlineFilter = "") => {
   const updateAirline = async (dataToSend) => {
     setLoading(true);
     try {
-      const response = await axios.put(`${API_URL}/update-airline`, dataToSend);
+      const response = await axios.put(
+        `${API_URL}/update-airline`,
+        dataToSend,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.status === "success") {
         swalAlert("Success", "Airline updated successfully");
         await getAllAirlines();
@@ -58,11 +71,7 @@ const useAirlines = (airlineFilter = "") => {
       }
       return false;
     } catch (err) {
-      swalAlert(
-        "Error",
-        err.response?.data?.message || "Failed to update airline"
-      );
-
+      swalAlert("Error", err.response.data.message || "Something went wrong");
       return false;
     } finally {
       setLoading(false);
@@ -81,13 +90,19 @@ const useAirlines = (airlineFilter = "") => {
     if (swal.isConfirmed) {
       setLoading(true);
       try {
-        const response = await axios.put(`${API_URL}/delete-airline/${id}`);
+        const response = await axios.put(
+          `${API_URL}/delete-airline/${id}`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
         if (response.data.status === "success") {
           swalAlert("Success", "Airline deleted successfully");
           await getAllAirlines();
         }
       } catch (err) {
-        swalAlert("Error", "Something went wrong");
+        swalAlert("Error", err.response.data.message || "Something went wrong");
       } finally {
         setLoading(false);
       }

@@ -31,7 +31,13 @@ const useAirports = (countryFilter = "") => {
   const createAirport = async (inputData) => {
     setLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/create-airport`, inputData);
+      const response = await axios.post(
+        `${API_URL}/create-airport`,
+        inputData,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.status === "success") {
         swalAlert("Success", "Airport created successfully");
         await refetch();
@@ -40,7 +46,7 @@ const useAirports = (countryFilter = "") => {
         swalAlert("Error", err.message);
       }
     } catch (err) {
-      swalAlert("Error", err.message);
+      swalAlert("Error", err.response.data.message || "Something went wrong");
       return false;
     } finally {
       setLoading(false);
@@ -50,12 +56,18 @@ const useAirports = (countryFilter = "") => {
   const updateAirport = async (id, updateData) => {
     setLoading(true);
     try {
-      const response = await axios.put(`${API_URL}/update-airport/${id}`, {
-        name: updateData.name,
-        iataCode: updateData.iataCode,
-        icaoCode: updateData.icaoCode,
-        countryId: updateData.countryId,
-      });
+      const response = await axios.put(
+        `${API_URL}/update-airport/${id}`,
+        {
+          name: updateData.name,
+          iataCode: updateData.iataCode,
+          icaoCode: updateData.icaoCode,
+          countryId: updateData.countryId,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
       if (response.data.status === "success") {
         swalAlert("Success", "Airport updated successfully");
@@ -64,7 +76,7 @@ const useAirports = (countryFilter = "") => {
       }
       return false;
     } catch (err) {
-      swalAlert("Error", "Failed to update airport");
+      swalAlert("Error", err.response.data.message || "Something went wrong");
       return false;
     } finally {
       setLoading(false);
@@ -84,13 +96,19 @@ const useAirports = (countryFilter = "") => {
     if (swal.isConfirmed) {
       setLoading(true);
       try {
-        const response = await axios.put(`${API_URL}/delete-airport/${id}`);
+        const response = await axios.put(
+          `${API_URL}/delete-airport/${id}`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
         if (response.data.status === "success") {
           swalAlert("Success", "Airport has been deleted.");
           await refetch();
         }
       } catch (err) {
-        swalAlert("Error", "Something went wrong");
+        swalAlert("Error", err.response.data.message || "Something went wrong");
       } finally {
         setLoading(false);
       }

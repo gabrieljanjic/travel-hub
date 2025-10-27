@@ -192,12 +192,15 @@ const Airline = () => {
           </select>
         </div>
       </div>
-      {loading && (
+      {loading ? (
         <div className="loading-div">
           <OrbitProgress color="#003061" size="medium" text="" textColor="" />
         </div>
-      )}
-      {!loading && (
+      ) : airlines.length === 0 ? (
+        <div className="loading-div">
+          <p className="h5">No airlines found</p>
+        </div>
+      ) : (
         <div className="grid">
           {airlines.map((airline) => {
             return (

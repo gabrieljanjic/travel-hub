@@ -2,15 +2,14 @@ import { NavLink } from "react-router-dom";
 import "../../index.css";
 import "line-awesome/dist/line-awesome/css/line-awesome.min.css";
 import { useState } from "react";
+import Login from "./Login";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <nav className="navbar">
       <div className="navbar-div">
         <h2 className="logo">Travel Hub</h2>
-
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -63,6 +62,9 @@ const Navbar = () => {
             >
               Routes
             </NavLink>
+          </li>
+          <li onClick={() => setMenuOpen(false)}>
+            <Login />
           </li>
         </ul>
       </div>

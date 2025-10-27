@@ -203,6 +203,8 @@ body {
 /*Navbar*/
 .navbar {
   width: 100%;
+  display: flex;
+  align-items: center;
   background-color: #003061;
   padding: 1rem 2rem;
   height: 60px;
@@ -212,6 +214,7 @@ body {
   z-index: 1000;
 }
 .navbar-div {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -255,6 +258,34 @@ body {
   color: #fff;
   font-size: 1.8rem;
   cursor: pointer;
+}
+/* Login */
+.login-register-div {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.login-register-btn {
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.8rem;
+  gap: 1rem;
+  border-radius: 4px;
+  border: 1px solid #f5f5f5;
+  background-color: transparent;
+  cursor: pointer;
+}
+.activeTab {
+  width: 100%;
+  border: 1px solid #a5a5a5;
+  background-color: #f7f7f7;
+}
+.login-logout-icons {
+  font-size: 1.1rem;
 }
 
 /*Dashboard*/
@@ -486,7 +517,7 @@ body {
   }
 }
 @media (max-width: 20rem) {
-  html {
-    font-size: 62.5%;
+  .section-title {
+    font-size: 1.3rem;
   }
 }

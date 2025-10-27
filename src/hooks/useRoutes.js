@@ -37,16 +37,18 @@ const useRoutes = () => {
     console.log("Input Data:", inputData);
     setLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/create-route`, inputData);
+      const response = await axios.post(`${API_URL}/create-route`, inputData, {
+        withCredentials: true,
+      });
       if (response.data.status === "success") {
         swalAlert("Success", "Route created successfully");
         return true;
       } else {
-        swalAlert("Error", response.data.message);
+        swalAlert("Error", err.response.data.message || "Something went wrong");
         return false;
       }
     } catch (err) {
-      swalAlert("Error", err.response.data.message);
+      swalAlert("Error", err.response.data.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -55,7 +57,9 @@ const useRoutes = () => {
   const updateRoute = async (dataToSend, currentFilter = "") => {
     setLoading(true);
     try {
-      const response = await axios.put(`${API_URL}/update-route`, dataToSend);
+      const response = await axios.put(`${API_URL}/update-route`, dataToSend, {
+        withCredentials: true,
+      });
       if (response.data.status === "success") {
         swalAlert("Success", "Route updated successfully");
         await getAllRoutes(currentFilter);
@@ -63,7 +67,7 @@ const useRoutes = () => {
       }
       return false;
     } catch (err) {
-      swalAlert("Error", err.response.data.message);
+      swalAlert("Error", err.response.data.message || "Something went wrong");
       return false;
     } finally {
       setLoading(false);
@@ -82,12 +86,18 @@ const useRoutes = () => {
     if (swal.isConfirmed) {
       setLoading(true);
       try {
-        const response = await axios.put(`${API_URL}/delete-route/${id}`);
+        const response = await axios.put(
+          `${API_URL}/delete-route/${id}`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
         if (response.data.status === "success") {
           return true;
         }
       } catch (err) {
-        swalAlert("Error", "Something went wrong");
+        swalAlert("Error", err.response.data.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
