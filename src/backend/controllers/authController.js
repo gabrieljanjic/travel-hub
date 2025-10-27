@@ -106,7 +106,7 @@ exports.requireAuth = (req, res, next) => {
     if (!token) {
       return res.status(401).json({
         status: "fail",
-        message: "You have to be loged in",
+        message: "Please log in to make changes.",
       });
     }
     jwt.verify(token, JWT_SECRET);
