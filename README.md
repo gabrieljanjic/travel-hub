@@ -16,7 +16,6 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - [Demo](#-demo)
 - [Database relationships](#️-database-relationships)
 - [Tech Stack](#️-tech-stack)
-- [Architecture](#️-architecture)
 - [API Endpoints](#-api-endpoints)
 
 ---
@@ -85,29 +84,6 @@ Built with **React**, **Node.js**, **Express**, and **MongoDB**.
 - Google Maps JavaScript API – Interactive maps  
 - Google Geocoding API – Airport location coordinates  
 
-
-##  Architecture
-┌─────────────┐
-│   Client    │  (Browser)
-└──────┬──────┘
-       │  HTTPS
-       ↓
-┌─────────────┐
-│   Vercel    │  (Frontend - React)
-│  Frontend   │  https://travel-hub-indol.vercel.app
-└──────┬──────┘
-       │  REST API
-       ↓
-┌─────────────┐
-│   Render    │  (Backend - Node.js / Express)
-│   Backend   │  https://travel-hub-backend.onrender.com
-└──────┬──────┘
-       │  Mongoose (ODM)
-       ↓
-┌─────────────┐
-│   MongoDB   │  (Database)
-│    Atlas    │  (Cloud NoSQL Database)
-└─────────────┘
 
 ##  API Endpoints
 
